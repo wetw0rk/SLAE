@@ -1,0 +1,95 @@
+/usr/include/i386-linux-gnu/asm/unistd_32.h
+/usr/include/netinet/in.h
+
+
+[----------BIND-SHELL----------]
+
+gdb -q ./bind-shell
+b * _start
+define hook-stop
+shell clear
+disassemble
+print $eflags
+end
+display /x $ebx
+display /x $eax
+display /x $ecx
+display /x $esp
+display /x $edx
+display /x $esi
+run
+
+[------------------------------]
+
+[---------REVERSE-SHELL--------]
+
+gdb -q ./reverse-shell
+b * _start
+define hook-stop
+shell clear
+disassemble
+print $eflags
+end
+display /x $ebx
+display /x $eax
+display /x $ecx
+display /x $esp
+display /x $edx
+display /x $esi
+run
+
+[------------------------------]
+
+[-------------EGG--------------]
+
+gdb -q ./egg
+b * _start
+define hook-stop
+shell clear
+disassemble
+print $eflags
+end
+display /x $ebx
+display /x $eax
+display /x $ecx
+display /x $esp
+display /x $edx
+display /x $esi
+run
+
+[------------------------------]
+
+[----------ENCODER-------------]
+
+gdb -q ./a.out
+b * &code
+define hook-stop
+shell clear
+disassemble $eip,+20
+print $eflags
+x/77xb $ebx
+end
+display /x $ebx
+display /x $eax
+display /x $ecx
+display /x $esp
+display /x $edx
+display /x $esi
+run
+
+===================================================== GOOD
+
+					[0xDF => 0xEB]
+
+=> 0x0804a049 <code+9>:	xor    BYTE PTR [ebx+edx*1],0xaa	$7 = [ PF ZF IF ]
+=> 0x0804a04d <code+13>:	shl    BYTE PTR [ebx+edx*1],1	$8 = [ IF ]
+=> 0x0804a050 <code+16>:	inc    BYTE PTR [ebx+edx*1]	$9 = [ SF IF OF ]
+
+
+===================================================== BAD
+
+					[0xA6 => 0x87] <---------- do not need increment
+
+=> 0x0804a049 <code+9>:	xor    BYTE PTR [ebx+edx*1],0xaa	$12 = [ IF ]
+=> 0x0804a04d <code+13>:	shl    BYTE PTR [ebx+edx*1],1	$13 = [ PF IF ]
+=> 0x0804a050 <code+16>:	inc    BYTE PTR [ebx+edx*1]	$14 = [ PF IF ]
