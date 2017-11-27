@@ -1,3 +1,51 @@
-# SLAE
+# SecurityTube Linux Assembly Expert (SLAE)
 The following repository contains the SecurityTube Linux Assembly Expert assignments, and exam
+## Table of Contents
+- ASSIGNMENTS
+	- 1-Assignment
+		- bind_shell
+	- 2-Assignment
+		- reverse_shell
+	- 3-Assignment
+		- egg
+		- egg2
+	- 4-Assignment
+- MODULE1
+	- 1-hello_world
+	- 2-data_types
+	- 3-moving_data
+	- 4-stack_usage
+	- 5-arithmetic
+		- math
+		- math2
+	- 6-logical_instructions
+		- thor
+	- 7-control_instructions
+		- mine
+		- panda_song
+	- 8-procedures
+		- alfred
+		- ytcracker
+	- 9-strings
+	- 10-libc
+- MODULE2
+	- 1-exit_shellcode
+		- exit
+		- exit2
+	- 2-hello_world_shellcode
+	- 3-execve_shellcode
+	- 4-hello_stack_shellcode
+	- 5-execve_stack_shellcode
+	- 6-xor-encoder
+		- original
+		- xor-decode
+			- no-fixed-loop
+	- 7-not-encoder
+		- not-decode
+		- original
+	- 8-insertion_encoder
+	- 9-xor-decode-mmx
+	- 10-polymorphism
+- TOOLS
+- USEFUL-NOTES
 
